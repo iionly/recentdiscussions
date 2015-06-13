@@ -1,0 +1,37 @@
+Changelog
+=========
+
+1.9.4
+-----
+
+- List of recent discussions now also includes newly started discussions without replies,
+- Revision of list layout (topics now listed using `<ul>`),
+- Change use of input/dropdown to input/select,
+- Clean up of whitespaces in code.
+
+1.9.3
+-----
+
+- Updated for Elgg 1.9.
+
+1.8.3
+-----
+
+- Fixed WSOD due to listing of (public or logged-in accessible) discussions that belong to restricted/hidden groups. Such discussions are now no longer listed to non-members of these groups.
+
+1.8.2
+-----
+
+- Index page widget for Widget Manager plugin added,
+- fix in index page view if custom_index plugin is used.
+
+1.8.1
+-----
+
+- French translation added (thank to emanwebdev),
+- German translation added.
+
+1.8.0
+-----
+
+- Initial release for Elgg 1.8.

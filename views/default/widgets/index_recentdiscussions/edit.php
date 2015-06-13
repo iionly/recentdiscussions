@@ -3,8 +3,8 @@
 $widget = $vars["entity"];
 
 $count = (int) $widget->recentdiscussions_count;
-if($count < 1){
-    $count = 10;
+if($count < 1) {
+	$count = 10;
 }
 
 ?>

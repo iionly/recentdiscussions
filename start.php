@@ -7,8 +7,8 @@
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @Author Jean-Baptiste Perriot <jb@perriot.fr>
  *
- * for Elgg 1.9 by iionly
- * (c) iionly 2012-2014
+ * for Elgg 1.9 and newer by iionly
+ * (c) iionly 2012
  * iionly@gmx.de
  */
 
@@ -16,12 +16,14 @@ elgg_register_event_handler('init','system','recentdiscussions_init');
 
 function recentdiscussions_init() {
 
-  //add a widget
-  elgg_register_widget_type('recentdiscussions', elgg_echo('recentdiscussions:title'), elgg_echo('recentdiscussions:widget:description'));
+	elgg_extend_view('css/elgg', 'recentdiscussions/css');
 
-  //add a index widget for Widget Manager plugin
-  elgg_register_widget_type('index_recentdiscussions', elgg_echo('recentdiscussions:title'), elgg_echo('recentdiscussions:widget:description'), array("index"));
+	//add a widget
+	elgg_register_widget_type('recentdiscussions', elgg_echo('recentdiscussions:title'), elgg_echo('recentdiscussions:widget:description'));
 
-  // Register for index page
-  elgg_extend_view('index/recentdiscussions', 'recentdiscussions/indexview');
+	//add a index widget for Widget Manager plugin
+	elgg_register_widget_type('index_recentdiscussions', elgg_echo('recentdiscussions:title'), elgg_echo('recentdiscussions:widget:description'), array("index"));
+
+	// Register for index page
+	elgg_extend_view('index/recentdiscussions', 'recentdiscussions/indexview');
 }

@@ -1,24 +1,25 @@
 <?php
 
-foreach (array_keys($vars['groupsposts']) as $groupid) {
-  $group = get_entity($groupid);
-  $info .= "<h4><a href=\"{$group->getURL()}\">" . elgg_echo('group') . " {$group->name}</a></h4>";
-  $info .= "<blockquote style='margin:0px, padding:0px'>";
+$groupsposts = $vars['groupsposts'];
 
-  $grouptopics = $vars['groupsposts'][$groupid];
-  foreach (array_keys($grouptopics) as $topicid) {
-    $topic = get_entity($topicid);
-    $info .= "- <a href=\"".elgg_get_site_url()."discussion/view/$topicid\">" . $topic->title . "</a><br>";
+$info = '';
+if ($groupsposts) {
+	$info .= "<ul class='recentdiscussions-list'>";
+	foreach (array_keys($groupsposts) as $groupid) {
+		$info .= "<li class='mts'>";
+		$group = get_entity($groupid);
+		$info .= "<h3><a href='" . $group->getURL() . "'>" . elgg_echo('group') . " " . $group->name . "</a></h3>";
 
-    if ($vars['showmessages']) {
-      foreach ($grouptopics[$topicid] as $post) {
-        $info .= $post->description;
-      }
-    }
-  }
-  $info .= "</blockquote>";
+		$info .= "<ul class='recentdiscussions-list mll'>";
+		foreach ($groupsposts[$groupid] as $topic) {
+			$info .= "<li class='mts pbs'><a href='" . elgg_get_site_url() . "discussion/view/" . $topic->guid . "'>" . $topic->title . "</a></li>";
+		}
+		$info .= "</ul>";
+		$info .= "</li>";
+	}
+	$info .= "</ul>";
+} else {
+	$info = '<p>' . elgg_echo('recentdiscussions:none') . '</p>';
 }
-
-$info .= "<div class='clearfloat'></div>";
 
 echo $info;

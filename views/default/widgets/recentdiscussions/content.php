@@ -6,58 +6,42 @@
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jean-Baptiste Perriot <jb@perriot.fr>
  *
- * for Elgg 1.9 by iionly
- * (c) iionly 2012-2014
+ * for Elgg 1.9 and newer by iionly
+ * (c) iionly 2012
  * iionly@gmx.de
  */
 
 $max_topics = $vars['entity']->num_display;
-
-if(!$max_topics)
-$max_topics = 10;
+if (!$max_topics) {
+	$max_topics = 10;
+}
 
 $ownerid = $vars['entity']->owner_guid;
-$offset = 0;
 $sortedposts = array();
-$topiccount = 0;
 
-while ($topiccount < $max_topics ) {
-  $lastposts = elgg_get_entities(array('type' => 'object',
-                                       'subtype' => 'discussion_reply',
-                                       'owner_guid' => $ownerid,
-                                       'limit' => 10,
-                                       'offset' => $offset,
-                                       'order_by' => 'time_created desc'));
+$lastposts = elgg_get_entities(array(
+	'type' => 'object',
+	'subtype' => 'groupforumtopic',
+	'owner_guid' => $ownerid,
+	'order_by' => 'e.last_action desc',
+	'limit' => $max_topics,
+));
 
-  if (!$lastposts) {
-    break;
-  }
+if ($lastposts) {
+	foreach ($lastposts as $lastpost) {
+		$topicid = $lastpost->getGUID();
+		$group = $lastpost->getContainerEntity();
 
-  // Build an array with the posts sorted by groups/topics
-  foreach ($lastposts as $lastpost) {
-    $topicid = $lastpost->container_guid;
-    $topic = get_entity($topicid);
-    $group = $topic->getContainerEntity();
+		if ($group) {
+			$groupid = $group->getGUID();
 
-    if ($group) {
-      $groupid = $group->getGUID();
-
-      if (!array_key_exists($groupid, $sortedposts)) {
-        $sortedposts[$groupid] = array();
-      }
-      if (!array_key_exists($topicid, $sortedposts[$groupid])) {
-        $topiccount++;
-        $sortedposts[$groupid][$topicid] = array();
-      }
-      array_push($sortedposts[$groupid][$topicid], $lastpost);
-    }
-
-    if ($topiccount >= $max_topics) {
-      break;
-    }
-  }
-  $offset += 10;
+			if (!array_key_exists($groupid, $sortedposts)) {
+				$sortedposts[$groupid] = array();
+			}
+			array_push($sortedposts[$groupid], $lastpost);
+		}
+	}
 }
 
 // Pass it to the view
-echo elgg_view("recentdiscussions/topic", array("groupsposts" => $sortedposts, "showmessages" => false));
+echo elgg_view("recentdiscussions/topic", array("groupsposts" => $sortedposts));
