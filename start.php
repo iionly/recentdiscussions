@@ -23,7 +23,28 @@ function recentdiscussions_init() {
 
 	//add a index widget for Widget Manager plugin
 	elgg_register_widget_type('index_recentdiscussions', elgg_echo('recentdiscussions:title'), elgg_echo('recentdiscussions:widget:description'), array("index"));
+	
+	//register title urls for widgets
+	elgg_register_plugin_hook_handler("entity:url", "object", "recentdiscussions_widget_urls");
 
 	// Register for index page
 	elgg_extend_view('index/recentdiscussions', 'recentdiscussions/indexview');
+}
+
+function recentdiscussions_widget_urls($hook_name, $entity_type, $return_value, $params){
+	$result = $return_value;
+	$widget = $params["entity"];
+
+	if(empty($result) && ($widget instanceof ElggWidget)) {
+		$owner = $widget->getOwnerEntity();
+		switch($widget->handler) {
+			case "recentdiscussions":
+				$result = "discussion/owner/" . $owner->guid;
+				break;
+			case "index_recentdiscussions":
+				$result = "discussion/all";
+				break;
+		}
+	}
+	return $result;
 }

@@ -1,7 +1,7 @@
-Recent discussions plugin for Elgg 1.9 - 1.12
-=============================================
+Recent discussions plugin for Elgg 2.X
+======================================
 
-Latest Version: 1.9.5  
+Latest Version: 2.0.0  
 Released: 2015-09-24  
 Contact: iionly@gmx.de  
 License: GNU General Public License version 2  

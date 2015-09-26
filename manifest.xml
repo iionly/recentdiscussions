@@ -3,7 +3,7 @@
 	<name>Recent discussions</name>
 	<id>recentdiscussions</id>
 	<author>iionly (Elgg 1.9 and newer) / Jean-Baptiste Perriot / Linagora for Saint Gobain</author>
-	<version>1.9.5</version>
+	<version>2.0.0</version>
 	<description>This plugin adds a widget that lists all the discussions in which a user recently took part in.</description>
 	<category>widgets</category>
 	<website>https://github.com/iionly</website>
@@ -11,7 +11,7 @@
 	<license>GNU General Public License (GPL) version 2</license>
 	<requires>
 		<type>elgg_release</type>
-		<version>1.9</version>
+		<version>2.0.0-beta.1</version>
 	</requires>
 	<suggests>
 		<type>plugin</type>

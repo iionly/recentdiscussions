@@ -1,17 +1,21 @@
 <?php
 
-$groupsposts = $vars['groupsposts'];
+$discussionposts = $vars['discussionposts'];
 
 $info = '';
-if ($groupsposts) {
+if ($discussionposts) {
 	$info .= "<ul class='recentdiscussions-list'>";
-	foreach (array_keys($groupsposts) as $groupid) {
+	foreach (array_keys($discussionposts) as $containerid) {
 		$info .= "<li class='mts'>";
-		$group = get_entity($groupid);
-		$info .= "<h3><a href='" . $group->getURL() . "'>" . elgg_echo('group') . " " . $group->name . "</a></h3>";
+		$container = get_entity($containerid);
+		if (elgg_instanceof($container, 'object')) {
+			$info .= "<h3><a href='" . $container->getURL() . "'>" . $container->title . "</a></h3>";
+		} else {
+			$info .= "<h3><a href='" . $container->getURL() . "'>" . $container->name . "</a></h3>";
+		}
 
 		$info .= "<ul class='recentdiscussions-list mll'>";
-		foreach ($groupsposts[$groupid] as $topic) {
+		foreach ($discussionposts[$containerid] as $topic) {
 			$info .= "<li class='mts pbs'><a href='" . elgg_get_site_url() . "discussion/view/" . $topic->guid . "'>" . $topic->title . "</a></li>";
 		}
 		$info .= "</ul>";

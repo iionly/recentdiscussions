@@ -23,7 +23,7 @@ $sortedposts = array();
 
 $lastposts = elgg_get_entities(array(
 	'type' => 'object',
-	'subtype' => 'groupforumtopic',
+	'subtype' => 'discussion',
 	'order_by' => 'e.last_action desc',
 	'limit' => $max_topics,
 ));
@@ -31,18 +31,18 @@ $lastposts = elgg_get_entities(array(
 if ($lastposts) {
 	foreach ($lastposts as $lastpost) {
 		$topicid = $lastpost->getGUID();
-		$group = $lastpost->getContainerEntity();
+		$container = $lastpost->getContainerEntity();
 
-		if ($group) {
-			$groupid = $group->getGUID();
+		if ($container) {
+			$containerid = $container->getGUID();
 
-			if (!array_key_exists($groupid, $sortedposts)) {
-				$sortedposts[$groupid] = array();
+			if (!array_key_exists($containerid, $sortedposts)) {
+				$sortedposts[$containerid] = array();
 			}
-			array_push($sortedposts[$groupid], $lastpost);
+			array_push($sortedposts[$containerid], $lastpost);
 		}
 	}
 }
 
 // Pass it to the view
-echo elgg_view("recentdiscussions/topic", array("groupsposts" => $sortedposts));
+echo elgg_view("recentdiscussions/topic", array("discussionposts" => $sortedposts));
