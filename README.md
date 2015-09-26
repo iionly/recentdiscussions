@@ -1,8 +1,8 @@
-Recent discussions plugin for Elgg 1.9 - 1.11
+Recent discussions plugin for Elgg 1.9 - 1.12
 =============================================
 
-Latest Version: 1.9.4  
-Released: 2015-06-13  
+Latest Version: 1.9.5  
+Released: 2015-09-24  
 Contact: iionly@gmx.de  
 License: GNU General Public License version 2  
 Copyright: (C) iionly 2012, (c) Jean-Baptiste Perriot 2009
@@ -29,7 +29,8 @@ If you are using the Widget Manager plugin, the recentdiscussions plugins comes 
 Installation
 ------------
 
-1. Copy the recentdiscussions folder in the mod directory of your Elgg installation,
-2. Enable the plugin in the admin section.
-3. The widget can now be added to profile pages/dashboards.
-4. Optionally: if you have the Widget Manager plugin installed, you can add the recentdiscussions widget to your index page.
+1. If you have a previous version of the Recent discussions plugin installed, disable the plugin, then remove the plugin's folder from the mod directory before installing the new version,
+2. Copy the recentdiscussions folder in the mod directory of your Elgg installation,
+3. Enable the plugin in the admin section.
+4. The widget can now be added to profile pages/dashboards.
+5. Optionally: if you have the Widget Manager plugin installed, you can add the recentdiscussions widget to your index page.

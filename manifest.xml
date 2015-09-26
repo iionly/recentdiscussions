@@ -3,8 +3,8 @@
 	<name>Recent discussions</name>
 	<id>recentdiscussions</id>
 	<author>iionly (Elgg 1.9 and newer) / Jean-Baptiste Perriot / Linagora for Saint Gobain</author>
-	<version>1.9.4</version>
-	<description>This plugin adds a widget that lists all the group discussions in which a user recently took part in.</description>
+	<version>1.9.5</version>
+	<description>This plugin adds a widget that lists all the discussions in which a user recently took part in.</description>
 	<category>widgets</category>
 	<website>https://github.com/iionly</website>
 	<copyright>(C) iionly 2012, (c) Jean-Baptiste Perriot 2009</copyright>
